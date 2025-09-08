@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
 
 
 @Component({
@@ -13,10 +14,18 @@ export class LoginComponent {
   password: string = '';
   rememberMe: boolean = false;
 
-  constructor (private router: Router) { }
+  constructor (private router: Router, private auth: AuthService) { }
 
   cadastrar () {
     this.router.navigate(['/cadastro']);
+  }
+
+  login () {
+    if (this.email === '' || this.password === '') {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
+    this.auth.login(this.email, this.password);
   }
 
 }

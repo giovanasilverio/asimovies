@@ -40,7 +40,7 @@
               <div class="absolute right-0 mt-2 w-32 bg-white border rounded shadow-lg hidden group-focus-within:block">
                 <ul>
                   <li>
-                    <button class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <button (click)="deleteMovie(movie.id)" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                       <i class="fas fa-trash-alt mr-2"></i> Excluir
                     </button>
                   </li>
@@ -51,13 +51,16 @@
           </div>
       
           <!-- Conteúdo do card -->
+
           <div class="photo">
-            <img [src]="movie.photoPath" alt="Card image">
+            <img *ngIf="movie.photo_url" [src]="movie.photo_url" alt="Card image">
+            <img *ngIf="!movie.photo_url" src="assets/imgs/comedia.jpg" alt="">
           </div>
 
+
           <div class="card-content">
-            <h2>{{ movie.title }}</h2>
-            <p>{{ movie.analysis }}</p>
+            <h2>{{ movie.name }}</h2>
+            <p>{{ movie.analisys }}</p>
 
             <!-- Avaliação com Estrelas -->
             <div class="rating">
